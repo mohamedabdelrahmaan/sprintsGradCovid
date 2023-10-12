@@ -1,0 +1,295 @@
+{
+	"name": "covidpipline",
+	"properties": {
+		"activities": [
+			{
+				"name": "tostage",
+				"description": "copy data from source container to stage container as csv",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "mine//covid-19.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "after2//"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalCases",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TotalCases",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NewCases",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NewCases",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalDeaths",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TotalDeaths",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NewDeaths",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NewDeaths",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalRecovered",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TotalRecovered",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ActiveCases",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ActiveCases",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SeriousCritical",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SeriousCritical",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tot Cases/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tot Cases/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Deaths/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Deaths/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TotalTests",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TotalTests",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Tests/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Tests/1M pop",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CASES per Test",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CASES per Test",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Death in Closed Cases",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Death in Closed Cases",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rank by Testing rate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rank by Testing rate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rank by Death rate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rank by Death rate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rank by Cases rate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rank by Cases rate",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rank by Death of Closed Cases",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rank by Death of Closed Cases",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "CovidsourceDataset",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
