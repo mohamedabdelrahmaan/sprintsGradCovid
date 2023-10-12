@@ -1,0 +1,96 @@
+{
+	"name": "CovidsourceDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "covid-19.csv",
+				"container": "mine"
+			},
+			"columnDelimiter": "\t",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "TotalCases",
+				"type": "String"
+			},
+			{
+				"name": "NewCases",
+				"type": "String"
+			},
+			{
+				"name": "TotalDeaths",
+				"type": "String"
+			},
+			{
+				"name": "NewDeaths",
+				"type": "String"
+			},
+			{
+				"name": "TotalRecovered",
+				"type": "String"
+			},
+			{
+				"name": "ActiveCases",
+				"type": "String"
+			},
+			{
+				"name": "SeriousCritical",
+				"type": "String"
+			},
+			{
+				"name": "Tot Cases/1M pop",
+				"type": "String"
+			},
+			{
+				"name": "Deaths/1M pop",
+				"type": "String"
+			},
+			{
+				"name": "TotalTests",
+				"type": "String"
+			},
+			{
+				"name": "Tests/1M pop",
+				"type": "String"
+			},
+			{
+				"name": "CASES per Test",
+				"type": "String"
+			},
+			{
+				"name": "Death in Closed Cases",
+				"type": "String"
+			},
+			{
+				"name": "Rank by Testing rate",
+				"type": "String"
+			},
+			{
+				"name": "Rank by Death rate",
+				"type": "String"
+			},
+			{
+				"name": "Rank by Cases rate",
+				"type": "String"
+			},
+			{
+				"name": "Rank by Death of Closed Cases",
+				"type": "String"
+			}
+		]
+	}
+}
