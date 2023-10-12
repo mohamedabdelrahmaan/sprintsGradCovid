@@ -1,0 +1,111 @@
+{
+	"name": "destinationCovidDatasetsql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "TotalCases",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewCases",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotalDeaths",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NewDeaths",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotalRecovered",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ActiveCases",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SeriousCritical",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotCasesPer1Mpop",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "DeathsPer1Mpop",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "TotalTests",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TestsPer1Mpop",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "CasesPerTest",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "DeathInClosedCases",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
+			},
+			{
+				"name": "RankByTestingRate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RankByDeathRate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RankByCasesRate",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RankByDeathOfClosedCases",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CovidStatistics"
+		}
+	}
+}
