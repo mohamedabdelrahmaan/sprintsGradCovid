@@ -284,10 +284,38 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "covidstage",
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "CovidDatabricks",
+				"description": "cleansing and analysis of stadged ",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "tostage",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/mohamed.abdoo330@gmail.com/CovidAnalysis"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
