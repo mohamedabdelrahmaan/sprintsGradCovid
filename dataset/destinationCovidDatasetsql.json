@@ -111,7 +111,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "CovidStatistics2"
+			"table": "NewCovidStatistics"
 		}
 	}
 }
