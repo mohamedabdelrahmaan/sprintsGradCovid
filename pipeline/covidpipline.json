@@ -387,8 +387,10 @@
 								},
 								"sink": {
 									"name": "TotalCases",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -399,8 +401,10 @@
 								},
 								"sink": {
 									"name": "NewCases",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -411,8 +415,10 @@
 								},
 								"sink": {
 									"name": "TotalDeaths",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -423,8 +429,10 @@
 								},
 								"sink": {
 									"name": "NewDeaths",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -435,8 +443,10 @@
 								},
 								"sink": {
 									"name": "TotalRecovered",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -447,8 +457,10 @@
 								},
 								"sink": {
 									"name": "ActiveCases",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -459,8 +471,10 @@
 								},
 								"sink": {
 									"name": "SeriousCritical",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -499,8 +513,10 @@
 								},
 								"sink": {
 									"name": "TotalTests",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
