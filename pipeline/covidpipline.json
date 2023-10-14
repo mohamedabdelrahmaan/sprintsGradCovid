@@ -325,7 +325,7 @@
 					{
 						"activity": "CovidDatabricks",
 						"dependencyConditions": [
-							"Skipped"
+							"Failed"
 						]
 					}
 				],
