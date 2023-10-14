@@ -12,7 +12,19 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "destinationCovidDatasetsql",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
 			"transformations": [
 				{
 					"name": "select1"
@@ -43,7 +55,58 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 select(skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Country as string,",
+				"          TotalCases as decimal(10,4),",
+				"          NewCases as decimal(10,4),",
+				"          TotalDeaths as decimal(10,4),",
+				"          NewDeaths as decimal(10,4),",
+				"          TotalRecovered as decimal(10,4),",
+				"          ActiveCases as decimal(10,4),",
+				"          SeriousCritical as decimal(10,4),",
+				"          TotCasesPer1Mpop as decimal(10,4),",
+				"          DeathsPer1Mpop as decimal(10,4),",
+				"          TotalTests as decimal(10,4),",
+				"          TestsPer1Mpop as decimal(10,4),",
+				"          CasesPerTest as decimal(10,4),",
+				"          DeathInClosedCases as string,",
+				"          RankByTestingRate as integer,",
+				"          RankByDeathRate as integer,",
+				"          RankByCasesRate as integer,",
+				"          RankByDeathOfClosedCases as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Country,",
+				"          TotalCases,",
+				"          NewCases,",
+				"          TotalDeaths,",
+				"          NewDeaths,",
+				"          TotalRecovered,",
+				"          ActiveCases,",
+				"          SeriousCritical,",
+				"          TotCasesPer1Mpop = {Tot Cases/1M pop},",
+				"          DeathsPer1Mpop = {Deaths/1M pop},",
+				"          TotalTests,",
+				"          TestsPer1Mpop = {Tests/1M pop},",
+				"          CasesPerTest = {CASES per Test},",
+				"          DeathInClosedCases = {Death in Closed Cases},",
+				"          RankByTestingRate = {Rank by Testing rate},",
+				"          RankByDeathRate = {Rank by Death rate},",
+				"          RankByCasesRate = {Rank by Cases rate},",
+				"          RankByDeathOfClosedCases = {Rank by Death of Closed Cases}",
+				"     )) ~> sink1"
 			]
 		}
 	}
