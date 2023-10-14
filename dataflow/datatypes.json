@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Country as string,",
@@ -28,16 +32,18 @@
 				"          {Deaths/1M pop} as double,",
 				"          TotalTests as double,",
 				"          {Tests/1M pop} as double,",
-				"          {CASES per Test} as double,",
+				"          {CASES per Test} as integer,",
 				"          {Death in Closed Cases} as string,",
-				"          {Rank by Testing rate} as integer,",
-				"          {Rank by Death rate} as integer,",
-				"          {Rank by Cases rate} as integer,",
-				"          {Rank by Death of Closed Cases} as integer",
+				"          {Rank by Testing rate} as short,",
+				"          {Rank by Death rate} as short,",
+				"          {Rank by Cases rate} as short,",
+				"          {Rank by Death of Closed Cases} as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
