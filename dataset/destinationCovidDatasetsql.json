@@ -14,38 +14,45 @@
 			},
 			{
 				"name": "TotalCases",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "NewCases",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "TotalDeaths",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "NewDeaths",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "TotalRecovered",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "ActiveCases",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "SeriousCritical",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "TotCasesPer1Mpop",
@@ -61,8 +68,9 @@
 			},
 			{
 				"name": "TotalTests",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 10,
+				"scale": 4
 			},
 			{
 				"name": "TestsPer1Mpop",
@@ -78,9 +86,7 @@
 			},
 			{
 				"name": "DeathInClosedCases",
-				"type": "decimal",
-				"precision": 10,
-				"scale": 4
+				"type": "varchar"
 			},
 			{
 				"name": "RankByTestingRate",
@@ -105,7 +111,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "CovidStatistics"
+			"table": "CovidStatistics2"
 		}
 	}
 }
