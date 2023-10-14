@@ -1,0 +1,44 @@
+{
+	"name": "datatypes",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "covidstage",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Country as string,",
+				"          TotalCases as double,",
+				"          NewCases as double,",
+				"          TotalDeaths as double,",
+				"          NewDeaths as double,",
+				"          TotalRecovered as double,",
+				"          ActiveCases as double,",
+				"          SeriousCritical as double,",
+				"          {Tot Cases/1M pop} as double,",
+				"          {Deaths/1M pop} as double,",
+				"          TotalTests as double,",
+				"          {Tests/1M pop} as double,",
+				"          {CASES per Test} as double,",
+				"          {Death in Closed Cases} as string,",
+				"          {Rank by Testing rate} as integer,",
+				"          {Rank by Death rate} as integer,",
+				"          {Rank by Cases rate} as integer,",
+				"          {Rank by Death of Closed Cases} as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}
