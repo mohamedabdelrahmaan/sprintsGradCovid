@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "covid-19.csv",
 				"container": "after2"
 			},
 			"columnDelimiter": ",",

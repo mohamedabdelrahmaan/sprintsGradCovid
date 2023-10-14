@@ -339,7 +339,7 @@
 				"userProperties": [
 					{
 						"name": "Source",
-						"value": "after2/covid-19.csv"
+						"value": "after2//covid-19.csv"
 					},
 					{
 						"name": "Destination",
