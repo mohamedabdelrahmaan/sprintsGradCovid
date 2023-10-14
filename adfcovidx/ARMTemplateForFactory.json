@@ -1,0 +1,903 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfcovidx"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase3'"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1012-035749-uq79b4av"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/covidpipline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "tostage",
+						"description": "copy data from source container to stage container as csv",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "mine//covid-19.csv"
+							},
+							{
+								"name": "Destination",
+								"value": "after2//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Country",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Country",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TotalCases",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalCases",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NewCases",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NewCases",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TotalDeaths",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalDeaths",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "NewDeaths",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NewDeaths",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TotalRecovered",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalRecovered",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ActiveCases",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ActiveCases",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "SeriousCritical",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SeriousCritical",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Tot Cases/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Tot Cases/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Deaths/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Deaths/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TotalTests",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TotalTests",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Tests/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Tests/1M pop",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "CASES per Test",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "CASES per Test",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Death in Closed Cases",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Death in Closed Cases",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Rank by Testing rate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Rank by Testing rate",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Rank by Death rate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Rank by Death rate",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Rank by Cases rate",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Rank by Cases rate",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Rank by Death of Closed Cases",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Rank by Death of Closed Cases",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CovidsourceDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "covidstage",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "tostage",
+								"dependencyConditions": [
+									"Completed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "datatypes",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/CovidsourceDataset')]",
+				"[concat(variables('factoryId'), '/datasets/covidstage')]",
+				"[concat(variables('factoryId'), '/dataflows/datatypes')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidsourceDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "covid-19.csv",
+						"container": "mine"
+					},
+					"columnDelimiter": "\t",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Country",
+						"type": "String"
+					},
+					{
+						"name": "TotalCases",
+						"type": "String"
+					},
+					{
+						"name": "NewCases",
+						"type": "String"
+					},
+					{
+						"name": "TotalDeaths",
+						"type": "String"
+					},
+					{
+						"name": "NewDeaths",
+						"type": "String"
+					},
+					{
+						"name": "TotalRecovered",
+						"type": "String"
+					},
+					{
+						"name": "ActiveCases",
+						"type": "String"
+					},
+					{
+						"name": "SeriousCritical",
+						"type": "String"
+					},
+					{
+						"name": "Tot Cases/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "Deaths/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "TotalTests",
+						"type": "String"
+					},
+					{
+						"name": "Tests/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "CASES per Test",
+						"type": "String"
+					},
+					{
+						"name": "Death in Closed Cases",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Testing rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Death rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Cases rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Death of Closed Cases",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/covidstage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "covid-19.csv",
+						"container": "after2"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Country",
+						"type": "String"
+					},
+					{
+						"name": "TotalCases",
+						"type": "String"
+					},
+					{
+						"name": "NewCases",
+						"type": "String"
+					},
+					{
+						"name": "TotalDeaths",
+						"type": "String"
+					},
+					{
+						"name": "NewDeaths",
+						"type": "String"
+					},
+					{
+						"name": "TotalRecovered",
+						"type": "String"
+					},
+					{
+						"name": "ActiveCases",
+						"type": "String"
+					},
+					{
+						"name": "SeriousCritical",
+						"type": "String"
+					},
+					{
+						"name": "Tot Cases/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "Deaths/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "TotalTests",
+						"type": "String"
+					},
+					{
+						"name": "Tests/1M pop",
+						"type": "String"
+					},
+					{
+						"name": "CASES per Test",
+						"type": "String"
+					},
+					{
+						"name": "Death in Closed Cases",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Testing rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Death rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Cases rate",
+						"type": "String"
+					},
+					{
+						"name": "Rank by Death of Closed Cases",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/destinationCovidDatasetsql')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Country",
+						"type": "varchar"
+					},
+					{
+						"name": "TotalCases",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "NewCases",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "TotalDeaths",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "NewDeaths",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "TotalRecovered",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "ActiveCases",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "SeriousCritical",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "TotCasesPer1Mpop",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "DeathsPer1Mpop",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "TotalTests",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "TestsPer1Mpop",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "CasesPerTest",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 4
+					},
+					{
+						"name": "DeathInClosedCases",
+						"type": "varchar"
+					},
+					{
+						"name": "RankByTestingRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RankByDeathRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RankByCasesRate",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "RankByDeathOfClosedCases",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "NewCovidStatistics"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase3')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "first",
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-179400526655208.8.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "anyway",
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase3_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/datatypes')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "covidstage",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "destinationCovidDatasetsql",
+								"type": "DatasetReference"
+							},
+							"name": "sink1",
+							"rejectedDataLinkedService": {
+								"referenceName": "AzureBlobStorage1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					],
+					"transformations": [
+						{
+							"name": "select1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Country as string,",
+						"          TotalCases as double,",
+						"          NewCases as double,",
+						"          TotalDeaths as double,",
+						"          NewDeaths as double,",
+						"          TotalRecovered as double,",
+						"          ActiveCases as double,",
+						"          SeriousCritical as double,",
+						"          {Tot Cases/1M pop} as double,",
+						"          {Deaths/1M pop} as double,",
+						"          TotalTests as double,",
+						"          {Tests/1M pop} as double,",
+						"          {CASES per Test} as integer,",
+						"          {Death in Closed Cases} as string,",
+						"          {Rank by Testing rate} as short,",
+						"          {Rank by Death rate} as short,",
+						"          {Rank by Cases rate} as short,",
+						"          {Rank by Death of Closed Cases} as short",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 select(mapColumn(",
+						"          Country,",
+						"          TotalCases,",
+						"          NewCases,",
+						"          TotalDeaths,",
+						"          NewDeaths,",
+						"          TotalRecovered,",
+						"          ActiveCases,",
+						"          SeriousCritical,",
+						"          {Tot Cases/1M pop},",
+						"          {Deaths/1M pop},",
+						"          TotalTests,",
+						"          {Tests/1M pop},",
+						"          {CASES per Test},",
+						"          {Death in Closed Cases},",
+						"          {Rank by Testing rate},",
+						"          {Rank by Death rate},",
+						"          {Rank by Cases rate},",
+						"          {Rank by Death of Closed Cases}",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          Country as string,",
+						"          TotalCases as decimal(10,4),",
+						"          NewCases as decimal(10,4),",
+						"          TotalDeaths as decimal(10,4),",
+						"          NewDeaths as decimal(10,4),",
+						"          TotalRecovered as decimal(10,4),",
+						"          ActiveCases as decimal(10,4),",
+						"          SeriousCritical as decimal(10,4),",
+						"          TotCasesPer1Mpop as decimal(10,4),",
+						"          DeathsPer1Mpop as decimal(10,4),",
+						"          TotalTests as decimal(10,4),",
+						"          TestsPer1Mpop as decimal(10,4),",
+						"          CasesPerTest as decimal(10,4),",
+						"          DeathInClosedCases as string,",
+						"          RankByTestingRate as integer,",
+						"          RankByDeathRate as integer,",
+						"          RankByCasesRate as integer,",
+						"          RankByDeathOfClosedCases as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     saveOrder: 1,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Country,",
+						"          TotalCases,",
+						"          NewCases,",
+						"          TotalDeaths,",
+						"          NewDeaths,",
+						"          TotalRecovered,",
+						"          ActiveCases,",
+						"          SeriousCritical,",
+						"          TotCasesPer1Mpop = {Tot Cases/1M pop},",
+						"          DeathsPer1Mpop = {Deaths/1M pop},",
+						"          TotalTests,",
+						"          TestsPer1Mpop = {Tests/1M pop},",
+						"          CasesPerTest = {CASES per Test},",
+						"          DeathInClosedCases = {Death in Closed Cases},",
+						"          RankByTestingRate = {Rank by Testing rate},",
+						"          RankByDeathRate = {Rank by Death rate},",
+						"          RankByCasesRate = {Rank by Cases rate},",
+						"          RankByDeathOfClosedCases = {Rank by Death of Closed Cases}",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/covidstage')]",
+				"[concat(variables('factoryId'), '/datasets/destinationCovidDatasetsql')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		}
+	]
+}
