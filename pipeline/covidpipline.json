@@ -472,7 +472,9 @@
 								"sink": {
 									"name": "TotCasesPer1Mpop",
 									"type": "Decimal",
-									"physicalType": "decimal"
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -484,7 +486,9 @@
 								"sink": {
 									"name": "DeathsPer1Mpop",
 									"type": "Decimal",
-									"physicalType": "decimal"
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -508,7 +512,9 @@
 								"sink": {
 									"name": "TestsPer1Mpop",
 									"type": "Decimal",
-									"physicalType": "decimal"
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -520,7 +526,9 @@
 								"sink": {
 									"name": "CasesPerTest",
 									"type": "Decimal",
-									"physicalType": "decimal"
+									"physicalType": "decimal",
+									"scale": 4,
+									"precision": 10
 								}
 							},
 							{
@@ -531,8 +539,8 @@
 								},
 								"sink": {
 									"name": "DeathInClosedCases",
-									"type": "Decimal",
-									"physicalType": "decimal"
+									"type": "String",
+									"physicalType": "varchar"
 								}
 							},
 							{
