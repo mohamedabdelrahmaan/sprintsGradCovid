@@ -29,7 +29,7 @@ As part of data ingestion, I uploaded the COVID-19 dataset to a Blob Storage con
 I staged the data as a copy into a second container as a step in the pipeline to ensure data integrity and facilitate further processing.
 
 ### Step 5: Exploratory Data Analysis (EDA)
-[Step 5: Exploratory Data Analysis](CovidAnalysis.IPYNB)
+[Step 5: Exploratory Data Analysis File](CovidAnalysis.ipynb)
 
 For in-depth data analysis, I used Azure Databricks to perform exploratory data analysis, enabling me to gain valuable insights and uncover patterns within the data.
 
@@ -39,7 +39,8 @@ For in-depth data analysis, I used Azure Databricks to perform exploratory data 
 I designed a dataflow step in the pipeline to transform data types, ensuring that the data aligns with the intended structure.
 
 ### Step 7: Power BI Dashboard
-![Step 7: Power BI Dashboard](dashboard.PNG)
+[Power BI Dashboard ](CovdSprints.pbix)
+![Step 7: Power BI Dashboard sc](dashboard.PNG)
 
 I connected Power BI to the Azure SQL database and created an interactive dashboard. The dashboard includes a world map visualizing COVID-19 cases, overview statistics, and rankings of top and least affected countries.
 
