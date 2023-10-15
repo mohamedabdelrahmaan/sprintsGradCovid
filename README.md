@@ -44,6 +44,11 @@ I designed a dataflow step in the pipeline to transform data types, ensuring tha
 
 I connected Power BI to the Azure SQL database and created an interactive dashboard. The dashboard includes a world map visualizing COVID-19 cases, overview statistics, and rankings of top and least affected countries.
 
+
+## Step 8: Azure SQL Table Creation
+
+In this step, we create an Azure SQL table to store COVID-19 statistics. The SQL script for table creation is included in the (query(1).sql) . Execute the script to define the table structure, columns, and data types for data storage.
+
 ## Repository Contents
 
 To provide a comprehensive overview of the project's progression, this repository includes the following components:
