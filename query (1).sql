@@ -1,0 +1,20 @@
+CREATE TABLE NewCovidStatistics (
+    Country VARCHAR(255),
+    TotalCases DECIMAL(14, 5),
+    NewCases DECIMAL(14, 5),
+    TotalDeaths DECIMAL(14, 5),
+    NewDeaths DECIMAL(14, 5),
+    TotalRecovered DECIMAL(14, 5),
+    ActiveCases DECIMAL(14, 5),
+    SeriousCritical DECIMAL(14, 5),
+    TotCasesPer1Mpop DECIMAL(14, 5),
+    DeathsPer1Mpop DECIMAL(14, 5),
+    TotalTests DECIMAL(14, 5),
+    TestsPer1Mpop DECIMAL(14, 5),
+    CasesPerTest DECIMAL(14, 5),
+    DeathInClosedCases DECIMAL(14, 5),
+    RankByTestingRate INT,
+    RankByDeathRate INT,
+    RankByCasesRate INT,
+    RankByDeathOfClosedCases INT
+);
