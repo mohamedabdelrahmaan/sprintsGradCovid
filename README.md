@@ -9,7 +9,7 @@ This repository showcases my comprehensive data engineering project, where I uti
 The project is organized into several key sections:
 
 ### Step 1: Resource Setup
-![Step 1: Resource Setup] (azureResources.png)
+![Step 1: Resource Setup](azureResources.png)
 
 I began by setting up essential Azure resources, including Blob Storage, Azure Databricks, Azure SQL, and Azure Data Factory.
 
