@@ -29,7 +29,7 @@ As part of data ingestion, I uploaded the COVID-19 dataset to a Blob Storage con
 I staged the data as a copy into a second container as a step in the pipeline to ensure data integrity and facilitate further processing.
 
 ### Step 5: Exploratory Data Analysis (EDA)
-![Step 5: Exploratory Data Analysis](CovidAnalysis.IPYNB)
+[Step 5: Exploratory Data Analysis](CovidAnalysis.IPYNB)
 
 For in-depth data analysis, I used Azure Databricks to perform exploratory data analysis, enabling me to gain valuable insights and uncover patterns within the data.
 
