@@ -14,32 +14,32 @@ The project is organized into several key sections:
 I began by setting up essential Azure resources, including Blob Storage, Azure Databricks, Azure SQL, and Azure Data Factory.
 
 ### Step 2: Linked Services
-![Step 2: Linked Services](/pipline.png)
+![Step 2: Linked Services](pipline.PNG)
 
 I configured linked services for each component to establish seamless connectivity and data transfer between them.
 
 ### Step 3: Data Ingestion
-![Step 3: Data Ingestion](/storage/3.png)
+![Step 3: Data Ingestion](storage.PNG)
 
 As part of data ingestion, I uploaded the COVID-19 dataset to a Blob Storage container as the source data. I utilized Azure Data Factory (ADF) to create an efficient data ingestion pipeline, connecting to the repository and logging each step of the process.
 
 ### Step 4: Data Staging
-![Step 4: Data Staging](/allpipline.png)
+![Step 4: Data Staging](allpipline.PNG)
 
 I staged the data as a copy into a second container as a step in the pipeline to ensure data integrity and facilitate further processing.
 
 ### Step 5: Exploratory Data Analysis (EDA)
-![Step 5: Exploratory Data Analysis](/CovidAnalysis.ipynb.png)
+![Step 5: Exploratory Data Analysis](CovidAnalysis.IPYNB)
 
 For in-depth data analysis, I used Azure Databricks to perform exploratory data analysis, enabling me to gain valuable insights and uncover patterns within the data.
 
 ### Step 6: Data Transformation
-![Step 6: Data Transformation](/Dataflow.png)
+![Step 6: Data Transformation](Dataflow.PNG)
 
 I designed a dataflow step in the pipeline to transform data types, ensuring that the data aligns with the intended structure.
 
 ### Step 7: Power BI Dashboard
-![Step 7: Power BI Dashboard](/dashboard.png)
+![Step 7: Power BI Dashboard](dashboard.PNG)
 
 I connected Power BI to the Azure SQL database and created an interactive dashboard. The dashboard includes a world map visualizing COVID-19 cases, overview statistics, and rankings of top and least affected countries.
 
